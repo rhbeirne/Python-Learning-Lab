@@ -1,9 +1,8 @@
-# We tell Python: "Go into the scripts folder and look for the VRPlayer file"
+
 from scripts.VRPlayer import VRPlayer
+from scripts.enemies import Boss
 
-# Now we use that blueprint to create you as a player
 p1 = VRPlayer("Richard")
+b1 = Boss("Ganon", 99)
 
-# Let's test if it's working
-print(f"Current Player: {p1.name}")
-p1.show_inventory()
+b1.show_inventory() # Notice: Boss can use Player methods!
