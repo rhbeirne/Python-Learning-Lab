@@ -14,13 +14,23 @@ class Star:
         print(f"✨ Success! You released {particles} stardust particles! ✨")
 
 
-# --- Testing the Logic ---
-# Create a Gold Star
-my_star = Star("Gold", 100)
+class BlackHole(Star):
+    def __init__(self):
+        # All black holes are 'Void' color and take away 500 points
+        super().__init__("Void", -500)
 
-# Simulate a hit
-player_hand = "Gold"
-if my_star.strike(player_hand):
-    my_star.spread_dust(velocity=15)
-else:
-    print("Missed the rhythm!")
+    def strike(self, hand_color):
+        # You can't match a black hole! Any contact is a penalty.
+        print("⚠️ CRITICAL ERROR: Absorbed by the Void! ⚠️")
+        return False
+    
+class Supernova(Star):
+    def __init__(self, color):
+        # We pass the color in, but hardcode the 1000 points
+        super().__init__(color, 1000)
+
+    def explode(self):
+        print(f"💥 SUPERNOVA EXPLOSION! {self.color} dust everywhere! 💥")
+
+    
+
