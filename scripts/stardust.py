@@ -11,11 +11,13 @@ galaxy = [
 for obj in galaxy:
     print(f"\nApproaching {obj.color} object...")
     
-    # If it's a regular strike (or supernova strike)
-    if obj.strike("Gold") or isinstance(obj, Supernova):
+    # Let the object decide if the strike was successful
+    if obj.strike("Gold"):
+        # If it's a supernova, do the special effect
         if isinstance(obj, Supernova):
             obj.explode()
-        else:
-            obj.spread_dust(15)
+        
+        # All successful strikes (Stars & Supernovas) release dust
+        obj.spread_dust(15)
     else:
         print("Distance maintained. Score safe.")
