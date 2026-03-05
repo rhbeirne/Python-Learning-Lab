@@ -28,7 +28,7 @@ from score_tracker import ScoreTracker  # <--- 1. Import the accountant
 # 2. Initialize the tracker
 tracker = ScoreTracker()
 
-galaxy = [Star("Gold"), Supernova("Cyan"), BlackHole("Red"), Star("Gold")]
+galaxy = [Star("Gold"), Supernova("Cyan"), BlackHole(), Star("Gold")]
 
 for obj in galaxy:
     print(f"\nApproaching {obj.color} object...")

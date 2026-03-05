@@ -1,5 +1,5 @@
 class Star:
-    def __init__(self, color, points):
+    def __init__(self, color, points=100):
         self.color = color
         self.points = points
 
