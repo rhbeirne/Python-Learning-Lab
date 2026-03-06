@@ -32,6 +32,7 @@ from score_tracker import ScoreTracker  # <--- 1. Import the accountant
 
 # 2. Initialize the tracker
 tracker = ScoreTracker()
+tracker.load_from_file()  # Load previous scores if available
 
 galaxy = [Star("Gold"), Supernova("Cyan"), BlackHole(), Star("Gold")]
 
@@ -51,3 +52,5 @@ for obj in galaxy:
 
 # 4. Show the final mission report
 tracker.get_final_report()
+
+tracker.save_to_file()  # Save the score for next time

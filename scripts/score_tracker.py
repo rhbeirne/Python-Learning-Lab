@@ -15,6 +15,7 @@ class ScoreTracker:
             "total_score": self.total_score,
             "history": self.history
         }
+        # We open the file first, THEN we dump the data inside
         with open(filename, "w") as f:
             json.dump(save_data, f)
         print(f"--- Data saved to {filename} ---")
