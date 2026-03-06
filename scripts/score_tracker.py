@@ -1,8 +1,6 @@
 # scripts/score_tracker.py
 import json
 
-import json # <--- New import at the top
-
 class ScoreTracker:
     def __init__(self):
         self.total_score = 0
@@ -13,13 +11,24 @@ class ScoreTracker:
         self.history.append(amount)
 
     def save_to_file(self, filename="highscore.json"):
-        # We create a dictionary to hold our data
         save_data = {
             "total_score": self.total_score,
             "history": self.history
         }
-        
-        # Now we "dump" that dictionary into a file
         with open(filename, "w") as f:
             json.dump(save_data, f)
         print(f"--- Data saved to {filename} ---")
+
+    def load_from_file(self, filename="highscore.json"):
+        try:
+            with open(filename, "r") as f:
+                data = json.load(f)
+                self.total_score = data["total_score"]
+                self.history = data["history"]
+            print(f"--- Welcome Back! Loaded score: {self.total_score} ---")
+        except FileNotFoundError:
+            print("--- No save file found. Starting fresh! ---")
+
+    def get_final_report(self):
+        print(f"Final Score: {self.total_score}")
+        print(f"History: {self.history}")

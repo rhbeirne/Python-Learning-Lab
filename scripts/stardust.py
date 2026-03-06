@@ -1,5 +1,10 @@
 # scripts/stardust.py
 from star import Star, BlackHole, Supernova
+from score_tracker import ScoreTracker
+
+tracker = ScoreTracker()
+tracker.load_from_file()  # Load previous scores if available
+
 
 # This list simulates a "level" in your game
 galaxy = [
