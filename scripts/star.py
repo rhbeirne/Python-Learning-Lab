@@ -36,12 +36,24 @@ class Supernova(Star):
 
 
 def generate_galaxy(size=10):
-    # This function lives in the same file as the classes, so it can see them!
-    options = [Star, Supernova, BlackHole]
+    new_galaxy = []
     colors = ["Gold", "Cyan", "Red", "Emerald", "Violet"]
-    
-    return [random.choice(options)(random.choice(colors)) for _ in range(size)]   
 
+    for _ in range(size):
+        roll = random.randint(1, 100) # Our 1-100 "dice"
+        color = random.choice(colors)
+
+        if roll <= 70:
+            # 70% chance
+            new_galaxy.append(Star(color))
+        elif roll <= 90:
+            # 20% chance (71 to 90)
+            new_galaxy.append(Supernova(color))
+        else:
+            # 10% chance (91 to 100)
+            new_galaxy.append(BlackHole(color))
+            
+    return new_galaxy
 
     
 

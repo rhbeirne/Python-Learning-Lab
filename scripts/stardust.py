@@ -35,7 +35,7 @@ from score_tracker import ScoreTracker  # <--- 1. Import the accountant
 tracker = ScoreTracker()
 tracker.load_from_file()  # Load previous scores if available
 
-galaxy = generate_galaxy(15)
+galaxy = generate_galaxy(20)
 
 
 for obj in galaxy:
