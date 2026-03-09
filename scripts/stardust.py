@@ -5,6 +5,9 @@ from score_tracker import ScoreTracker
 tracker = ScoreTracker()
 tracker.load_from_file()  # Load previous scores if available
 
+import random
+from scripts.space_objects import Star, Supernova, BlackHole
+
 
 # This list simulates a "level" in your game
 galaxy = [
