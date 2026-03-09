@@ -1,3 +1,6 @@
+
+import random
+
 class Star:
     def __init__(self, color, points=100):
         self.color = color
@@ -15,8 +18,7 @@ class Star:
 
 
 class BlackHole(Star):
-    def __init__(self):
-        # All black holes are 'Void' color and take away 500 points
+    def __init__(self,color = "Void"):        # All black holes are 'Void' color and take away 500 points
         super().__init__("Void", -500)
 
     def strike(self, hand_color):
@@ -31,6 +33,15 @@ class Supernova(Star):
 
     def explode(self):
         print(f"💥 SUPERNOVA EXPLOSION! {self.color} dust everywhere! 💥")
+
+
+def generate_galaxy(size=10):
+    # This function lives in the same file as the classes, so it can see them!
+    options = [Star, Supernova, BlackHole]
+    colors = ["Gold", "Cyan", "Red", "Emerald", "Violet"]
+    
+    return [random.choice(options)(random.choice(colors)) for _ in range(size)]   
+
 
     
 

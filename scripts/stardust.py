@@ -1,6 +1,7 @@
 # scripts/stardust.py
 from star import Star, BlackHole, Supernova
 from score_tracker import ScoreTracker
+from star import Star, Supernova, BlackHole, generate_galaxy
 
 tracker = ScoreTracker()
 tracker.load_from_file()  # Load previous scores if available
@@ -34,7 +35,8 @@ from score_tracker import ScoreTracker  # <--- 1. Import the accountant
 tracker = ScoreTracker()
 tracker.load_from_file()  # Load previous scores if available
 
-galaxy = [Star("Gold"), Supernova("Cyan"), BlackHole(), Star("Gold")]
+galaxy = generate_galaxy(15)
+
 
 for obj in galaxy:
     print(f"\nApproaching {obj.color} object...")
