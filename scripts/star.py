@@ -35,23 +35,28 @@ class Supernova(Star):
         print(f"💥 SUPERNOVA EXPLOSION! {self.color} dust everywhere! 💥")
 
 
-def generate_galaxy(size=10):
+def generate_galaxy(size=10, current_score=0):
     new_galaxy = []
     colors = ["Gold", "Cyan", "Red", "Emerald", "Violet"]
 
+    # Calculate "Danger Level"
+    # Every 200 points, we'll increase the chance of a Black Hole by 5%
+    danger_bonus = current_score // 200 * 5 
+    
+    # We'll cap the danger so it's never 100% Black Holes (that's no fun!)
+    black_hole_threshold = min(10 + danger_bonus, 40) 
+
     for _ in range(size):
-        roll = random.randint(1, 100) # Our 1-100 "dice"
+        roll = random.randint(1, 100)
         color = random.choice(colors)
 
-        if roll <= 70:
-            # 70% chance
-            new_galaxy.append(Star(color))
-        elif roll <= 90:
-            # 20% chance (71 to 90)
+        # The higher the score, the easier it is to roll into the Black Hole bucket
+        if roll <= black_hole_threshold:
+            new_galaxy.append(BlackHole(color))
+        elif roll <= black_hole_threshold + 20:
             new_galaxy.append(Supernova(color))
         else:
-            # 10% chance (91 to 100)
-            new_galaxy.append(BlackHole(color))
+            new_galaxy.append(Star(color))
             
     return new_galaxy
 
