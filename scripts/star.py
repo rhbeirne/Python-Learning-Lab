@@ -6,6 +6,10 @@ class Star:
         self.color = color
         self.points = points
 
+
+    def get_reward(self):
+        return self.points
+
     def strike(self, hand_color):
         if hand_color == self.color:
             return True
@@ -15,6 +19,7 @@ class Star:
     def spread_dust(self, velocity):
         particles = velocity * 10
         print(f"✨ Success! You released {particles} stardust particles! ✨")
+        return particles
 
 
 class BlackHole(Star):

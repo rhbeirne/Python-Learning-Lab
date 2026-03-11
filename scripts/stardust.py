@@ -45,10 +45,10 @@ for obj in galaxy:
         if isinstance(obj, Supernova):
             obj.explode()
         
-        obj.spread_dust(15)
+        dust_released = obj.spread_dust(15)
         
         # 3. RECORD THE POINTS!
-        tracker.add_score(10) # We'll start with 10 points per hit
+        tracker.add_score(dust_released) # We add the points from the stardust to our tracker
     else:
         print("Distance maintained. Score safe.")
 
