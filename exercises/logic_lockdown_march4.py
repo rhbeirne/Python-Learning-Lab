@@ -52,3 +52,41 @@ total = 0
 for item in raw_data:
     if item is not None:
         total += item
+
+
+class FuelTank:
+    def __init__(self):
+        self.level = 100
+
+    def consume_fuel(self, amount):
+        
+        if amount <= self.level:
+            self.level -= amount
+        else:
+            print("Not enough fuel")
+
+class Spaceship:
+    def get_power(self, engine_count): # Added a colon here too!
+        return engine_count * 10
+
+# 1. Create the "instance" (The Toolbox)
+my_ship = Spaceship() 
+
+# 2. Use the "instance" to call the method
+current_power = my_ship.get_power(3) 
+
+print(current_power) # Result: 30    
+
+class Spaceship:
+    def __init__(self, engines):
+        self.engine_count = engines
+
+    def calculate_total_power(self):
+        return self.engine_count * 10
+
+total_power = Spaceship(5).calculate_total_power()
+print(total_power) # Result: 50
+
+
+
+        
