@@ -1,9 +1,12 @@
 #New day
 
+from asyncio import shield
+
+
 class Shield:
-    def __init__(self):
+    def __init__(self, energy  ):
         self.active = False
-        self.energy = 100
+        self.energy = energy
         self.overdrive = False
 
     def activate(self):
@@ -29,15 +32,18 @@ class Shield:
 
 class RepairStation:
     def recharge(self, target_shield):
-        target_shield.energy = 100
-        return "Shields Fully Charged!"
+        target_shield.energy == 100:
+            return "Shields already at full energy!"
+        
+        
     
-shield = Shield()
-print(shield.is_protected())
-print(shield.take_hit())  # False
+
 
 repair = RepairStation()
 print(repair.recharge(shield))  # "Shields Fully Charged!"
 print(shield.energy)  # 100
+
+repair.recharge(shield)
+print(shield.energy)  # 80
 
 
