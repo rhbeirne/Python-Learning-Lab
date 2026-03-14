@@ -86,4 +86,9 @@ p1.pick_up_item("Shield")
 p1.pick_up_item("Health Potion")
 print(p1.use_item("Health Potion"))
 
+mage1.pick_up_item("wand")
+
+print(mage1.inventory())
+
+
 
