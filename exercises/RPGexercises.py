@@ -1,4 +1,6 @@
 # RPG exercises
+import random
+
 
 class Player:
     def __init__(self, name, health=100):
@@ -44,9 +46,15 @@ class Player:
         return f"Level up! You are now level {self.level}. Your max health is now {self.max_health}."
     
     def attack(self, target):
-        damage = 10 * self.level
-        target.take_damage(damage)
-        return f"{self.name} attacks {target.name} for {damage} damage!"
+        roll = random.randint(1, 10)
+        if roll == 10:
+            damage = 20 * self.level
+            target.take_damage(damage)
+            return f"{self.name} crits {target.name} for {damage} damage!"
+        else:
+            damage = 10 * self.level
+            target.take_damage(damage)
+            return f"{self.name} attacks {target.name} for {damage} damage!"
     
 
 class Mage(Player):
@@ -56,7 +64,26 @@ class Mage(Player):
     def cast_spell(self, target):
         self.mana -= 10
         target.take_damage(40)
-        return f"{self.name} casts a fireball at {target.name} for 40 damage!"        
+        return f"{self.name} casts a fireball at {target.name} for 40 damage!" 
+    def take_damage(self, amount):
+        return super().take_damage(amount)    
+
+class chest:
+    def __init__(self):
+        self.item = "Gold Sword"
+        self.is_open = False
+
+    def open(self, opener):
+        if not self.is_open:
+            self.is_open = True
+            opener.pick_up_item(self.item)
+            return f"{opener.name} opens the chest and finds a {self.item}!"
+        else:
+            return "The chest is already open."
+    
+    
+    
+
 
     
 
