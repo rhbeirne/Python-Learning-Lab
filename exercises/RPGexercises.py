@@ -27,6 +27,8 @@ class Player:
 
     def take_damage(self, amount):
         self.health -= amount
+        if self.health < 0:
+            self.health = 0
     
     def heal(self, amount):
         self.health += amount
@@ -39,14 +41,23 @@ class Player:
             return True
         else:
             return False
+        
+    def gain_experience(self, amount):
+        if amount >= 100:
+            self.gain_level()
+            return f"{self.name} gained {amount} experience and leveled up!"
+        else:
+            return f"{self.name} gained {amount} experience."
     
     def gain_level(self):
         self.level += 1
         self.max_health += 20
-        return f"Level up! You are now level {self.level}. Your max health is now {self.max_health}."
+        return f"{self.name} level up! You are now level {self.level}. Your max health is now {self.max_health}."
     
     def attack(self, target):
         roll = random.randint(1, 10)
+        print(roll)
+        self.gain_experience(50)
         if roll == 10:
             damage = 20 * self.level
             target.take_damage(damage)
@@ -66,7 +77,10 @@ class Mage(Player):
         target.take_damage(40)
         return f"{self.name} casts a fireball at {target.name} for 40 damage!" 
     def take_damage(self, amount):
-        return super().take_damage(amount)    
+        return super().take_damage(amount) 
+    def show_inventory(self):
+        return f"Your inventory contains: {super().show_inventory()} and your mana is {self.mana}."
+       
 
 class chest:
     def __init__(self):
@@ -80,42 +94,51 @@ class chest:
             return f"{opener.name} opens the chest and finds a {self.item}!"
         else:
             return "The chest is already open."
+        
     
     
     
 
 
     
+party_leader = Player ( input("Enter the name of the party leader: "))
+
+p1 = Player("Alice")
+p2 = Player("Bob")
+m3 = Mage("Gandalf")
+
+print(f"Welcome, {party_leader.name}! Your adventure begins now.")
+print(f"{party_leader.name} has {party_leader.health} health and is at level {party_leader.level}.")
+target = input("Who would you like to attack? ")
+
+if target.lower() == "alice":
+    print(party_leader.attack(p1))
+elif target.lower() == "bob":
+    print(party_leader.attack(p2))
+elif target.lower() == "gandalf":
+    print(party_leader.attack(m3))
+else:
+    print("Invalid target.")    
 
 
-p1 = Player(input("Enter your character's name: "))
-p2 = Player("Fat Goblin King", 200)
-print(p1.name, p1.health)  # "Wilder 100"
-print(p2.name, p2.health)  # "Fat Goblin King 200"
-mage1 = Mage("Gandalf")
-print(mage1.name, mage1.cast_spell(p2))  # "Gandalf casts a fireball
+print(party_leader.gain_level())
+print(party_leader.level, party_leader.max_health)  # 2, 120
+p1.attack(m3)
+print(m3.health, m3.name)  # 60
+p1.attack(p2)
+print(p2.health, p2.name)  # 30
 
+chest1 = chest()
+print(chest1.open(p1))  # "Alice opens the chest and finds a Gold Sword!"
+print(p1.show_inventory())  # ["Gold Sword"]
 
+print(chest1.open(p1))  # "Alice opens the chest and finds a Gold Sword!"
 
+print(f"{party_leader.attack(p1)} and then {party_leader.attack(p2)}")  # "Party leader attacks Alice for 10 damage!" "Party leader attacks Bob for 10 damage!"
 
-print(p1.name, p1.gain_level())  # "Wilder Level up! You are now level 2."
+print(p1.name, p1.health, p2.name, p2.health)  # 110
 
-
-
-p1.take_damage(50)
-p1.heal(30)
-print(p1.health)  # 80
-print(p1.name, p1.gain_level())   # "Level up! You are now level 3."
-print(p1.max_health)  # 120
-
-p1.pick_up_item("Sword")
-p1.pick_up_item("Shield")
-p1.pick_up_item("Health Potion")
-print(p1.use_item("Health Potion"))
-
-mage1.pick_up_item("wand")
-
-print(mage1.inventory())
-
+print(party_leader.gain_experience(150))  # "Party leader gained 150 experience and leveled up!"
+print(f"{party_leader.name} is now level {party_leader.level} with {party_leader.max_health} max health.")  # 3,
 
 

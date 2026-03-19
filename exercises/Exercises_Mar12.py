@@ -36,6 +36,13 @@ class RepairStation:
         target_shield.energy = 100
         return "Shields Fully Charged!"
 
+def function_two(n):
+    return n + 10
+
+result_two = function_two(5)
+print(result_two)  # 15
+result_two = result_two + 10
+print(result_two)  # 25
 
 shield = Shield(80)
 repair = RepairStation()
