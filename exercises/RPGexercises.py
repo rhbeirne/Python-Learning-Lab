@@ -142,3 +142,67 @@ print(party_leader.gain_experience(150))  # "Party leader gained 150 experience 
 print(f"{party_leader.name} is now level {party_leader.level} with {party_leader.max_health} max health.")  # 3,
 
 
+import random
+import math
+
+"""
+Project: RPG Logic Core v1.0
+Author: Richard
+Description: A collection of core mechanics for inventory management, 
+combat calculations, and environment requirements.
+"""
+
+# --- 1. Character & Environment Setup ---
+player_name = "evander"
+formatted_name = player_name.capitalize()
+level = 12
+has_key = False
+inventory = ["Sword", "Shield", "Potion", "Fire Shield"]
+
+# --- 2. Requirements Check (The Dragon Lair) ---
+# Check for both Level and specific Item requirements
+if level >= 10 and "Fire Shield" in inventory:
+    print(f"Welcome, {formatted_name}. You may enter the Lair!")
+else:
+    print("The heat is too intense. You are not prepared.")
+
+# --- 3. Combat & Damage Logic ---
+# Generate a random damage roll between 15 and 25
+base_damage = random.randint(15, 25)
+critical_multiplier = 1.5
+
+# Calculate crit and use math.floor to round down to a whole number
+total_damage = math.floor(base_damage * critical_multiplier)
+print(f"CRITICAL HIT! You dealt {total_damage} damage.")
+
+# --- 4. Health & Overheal Management ---
+health = 45
+max_health = 100
+potion_heal = 60
+
+# Use min() to ensure health never exceeds the cap
+health = min(health + potion_heal, max_health)
+print(f"Health restored to: {health}/{max_health}")
+
+# --- 5. Inventory Management ---
+# Check if inventory is full (Limit: 5)
+if len(inventory) >= 5:
+    print("Inventory Full! Drop an item to make room.")
+
+# Example of swapping items
+if "Potion" in inventory:
+    inventory.remove("Potion")
+    inventory.append("Dragon Egg")
+    print(f"Updated Inventory: {inventory}")
+
+# --- 6. Security & Edge Case Handling ---
+# Prevent negative gold (The Professional 'Standard')
+player_gold = 50
+item_price = 100
+
+if player_gold >= item_price:
+    player_gold -= item_price
+else:
+    # Use max() to ensure gold never accidentally drops below 0
+    player_gold = max(0, player_gold)
+    print("Transaction Cancelled: Insufficient Gold.")
