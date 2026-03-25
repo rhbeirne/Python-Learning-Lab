@@ -206,3 +206,5 @@ else:
     # Use max() to ensure gold never accidentally drops below 0
     player_gold = max(0, player_gold)
     print("Transaction Cancelled: Insufficient Gold.")
+
+
