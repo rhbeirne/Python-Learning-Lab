@@ -208,3 +208,57 @@ else:
     print("Transaction Cancelled: Insufficient Gold.")
 
 
+ DAY 3: DATA STRUCTURING & COMBO MOVES
+# ---------------------------------------------------------
+
+# ... (Previous Exercises 16-22 kept for reference)
+
+# --- EXERCISE 23: THE CHARACTER MANIFEST (COMBO) ---
+crew_data = [
+    {"name": "Evander", "role": "Pilot", "rank": 5},
+    {"name": "Cassia", "role": "Engineer", "rank": 8},
+    {"name": "Grog", "role": "Security", "rank": 3}
+]
+
+# SOLUTION: { KEY : (TUPLE_VALUE) for item in list }
+crew_manifest = {n["name"]: (n["role"], n["rank"]) for n in crew_data}
+print(f"Cassia's Stats: {crew_manifest['Cassia']}") 
+
+
+# --- EXERCISE 24: THE FINAL BOSS (COMBO + FILTER) ---
+
+raw_intel = [
+    {"name": "Evander", "rank": 5, "traitor": False},
+    {"name": "Cassia", "rank": 8, "traitor": False},
+    {"name": "Mole", "rank": 1, "traitor": True}
+]
+
+# THE CORRECTED SOLUTION:
+# 1. Use {Key: Value} for a dictionary
+# 2. Access the keys correctly (t["name"], t["rank"])
+# 3. Filter at the end
+loyal_manifest = {t["name"]: t["rank"] for t in raw_intel if t["traitor"] == False}
+
+print(f"Loyal Crew: {loyal_manifest}")
+# Output: {'Evander': 5, 'Cassia': 8}
+
+
+# ---------------------------------------------------------
+# MONDAY SUMMARY FOR GITHUB EXPORT
+# ---------------------------------------------------------
+"""
+PRACTICE LOG: MARCH 30, 2026
+TOPICS: SETS, DICTIONARIES, TUPLES, AND IMMUTABILITY
+
+1. Exercise 16: Set Comprehensions {item for item in list}
+   - Purpose: Automatic duplicate removal.
+2. Exercise 17/18: Dictionary Comprehensions {k:v for item in list}
+   - Purpose: Quick lookup tables and budget filtering.
+3. Exercise 19: Dictionary If-Else Flip
+   - Purpose: Tagging data (Elite vs Standard) inside a dictionary.
+4. Exercise 20/21/22: Tuples and Immutability
+   - Purpose: Locking coordinates and fixed star colors using tuple().
+5. Exercise 23/24: Complex Data Structures
+   - Purpose: Building manifests that map names to rank/role tuples.
+"""
+
