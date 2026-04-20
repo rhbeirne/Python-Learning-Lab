@@ -19,7 +19,7 @@ class ReportGenerator:
 # Here is a mock list of offline servers
 crashed_servers = ["DB-01", "Mail-Gateway", "Auth-Server"]
 
-my_reporter = ReportGenerator("fleet_report.txt")
+my_reporter = ReportGenerator("Library_exercise/fleet_report.txt")
 my_reporter.write_report(crashed_servers)
 
 print("Script finished! Check your local folder for the new file.")
